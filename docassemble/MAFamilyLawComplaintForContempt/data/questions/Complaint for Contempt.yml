@@ -1,0 +1,677 @@
+mandatory: True
+code: |
+  interview_metadata # make sure we initialize the object
+  if not defined("interview_metadata['cjd103_print_to_Adobe_PDF_labels_added0013']"):
+    interview_metadata.initializeObject('cjd103_print_to_Adobe_PDF_labels_added0013')
+  interview_metadata['cjd103_print_to_Adobe_PDF_labels_added0013'].update({
+    'title': 'Complaint for Contempt',
+    'short title': 'Complaint for Contempt',
+    'description': 'Complaint for Contempt',
+    'original_form': 'https://www.mass.gov/doc/complaint-for-contempt-cjd-103/download',
+    'allowed courts': [
+      'Probate and Family Court',
+    ],
+    'preferred court': 'Probate and Family Court',
+    'categories': [
+      'Family Law',
+    ],
+    'logic block variable': 'cjd103_print_to_Adobe_PDF_labels_added0013',
+    'attachment block variable': 'cjd103_print_to_Adobe_PDF_labels_added0013_attachment',
+    'typical role': 'plaintiff',
+    'built_in_fields_used': [
+      {'variable': 'docket_number',
+       'transformed_variable': 'docket_numbers[0]',
+      },
+      {'variable': 'plaintiff_name_last',
+       'transformed_variable': 'users[0].name.last',
+      },
+      {'variable': 'plaintiff_name_first',
+       'transformed_variable': 'users[0].name.first',
+      },
+      {'variable': 'court_county',
+       'transformed_variable': 'courts[0].address.county',
+      },
+      {'variable': 'defendant_name_last',
+       'transformed_variable': 'other_parties[0].name.last',
+      },
+      {'variable': 'defendant_name_first',
+       'transformed_variable': 'other_parties[0].name.first',
+      },
+      {'variable': 'plaintiff_address_street',
+       'transformed_variable': 'users[0].address.address',
+      },
+      {'variable': 'plaintiff_address_street2',
+       'transformed_variable': 'users[0].address.unit',
+      },
+      {'variable': 'plaintiff_address_city',
+       'transformed_variable': 'users[0].address.city',
+      },
+      {'variable': 'plaintiff_address_state',
+       'transformed_variable': 'users[0].address.state',
+      },
+      {'variable': 'plaintiff_address_zip',
+       'transformed_variable': 'users[0].address.zip',
+      },
+      {'variable': 'defendant_address_street',
+       'transformed_variable': 'other_parties[0].address.address',
+      },
+      {'variable': 'defendant_address_street2',
+       'transformed_variable': 'other_parties[0].address.unit',
+      },
+      {'variable': 'defendant_address_city',
+       'transformed_variable': 'other_parties[0].address.city',
+      },
+      {'variable': 'defendant_address_state',
+       'transformed_variable': 'other_parties[0].address.state',
+      },
+      {'variable': 'defendant_address_zip',
+       'transformed_variable': 'other_parties[0].address.zip',
+      },
+      {'variable': 'attorney_name_full',
+       'transformed_variable': 'str(attorneys[0])',
+      },
+      {'variable': 'attorney_address_street',
+       'transformed_variable': 'attorneys[0].address.address',
+      },
+      {'variable': 'attorney_address_street2',
+       'transformed_variable': 'attorneys[0].address.unit',
+      },
+      {'variable': 'attorney_address_city',
+       'transformed_variable': 'attorneys[0].address.city',
+      },
+      {'variable': 'attorney_address_state',
+       'transformed_variable': 'attorneys[0].address.state',
+      },
+      {'variable': 'attorney_address_zip',
+       'transformed_variable': 'attorneys[0].address.zip',
+      },
+      {'variable': 'attorney_phone',
+       'transformed_variable': 'attorneys[0].phone_number',
+      },
+      ],
+    'fields': [
+      {'variable': 'complaint_for_contempt_civil_yes',
+       'transformed_variable': 'complaint_for_contempt_civil_yes',
+      'field_type': 'yesno',
+      },
+      {'variable': 'complaint_for_contempt_criminal_yes',
+       'transformed_variable': 'complaint_for_contempt_criminal_yes',
+      'field_type': 'yesno',
+      },
+      {'variable': 'plaintiff_name_middle_intial',
+       'transformed_variable': 'users[0].name_middle_intial',
+      'field_type': 'text',
+      'field_data_type': 'text',
+      },
+      {'variable': 'defendant_name_middle_initial',
+       'transformed_variable': 'other_parties[0].name_middle_initial',
+      'field_type': 'text',
+      'field_data_type': 'text',
+      },
+      {'variable': 'contempt_from_judgment_yes',
+       'transformed_variable': 'contempt_from_judgment_yes',
+      'field_type': 'yesno',
+      },
+      {'variable': 'contempt_from_order_yes',
+       'transformed_variable': 'contempt_from_order_yes',
+      'field_type': 'yesno',
+      },
+      {'variable': 'order_or_judgment_date',
+       'transformed_variable': 'order_or_judgment_date',
+      'field_type': 'text',
+      'field_data_type': 'date',
+      },
+      {'variable': 'defendant_was_ordered_to_pay_yes',
+       'transformed_variable': 'other_parties[0].was_ordered_to_pay_yes',
+      'field_type': 'yesno',
+      },
+      {'variable': 'defendant_was_ordered_to_pay_alimony_yes',
+       'transformed_variable': 'other_parties[0].was_ordered_to_pay_alimony_yes',
+      'field_type': 'yesno',
+      },
+      {'variable': 'defendant_was_ordered_to_pay_support_yes',
+       'transformed_variable': 'other_parties[0].was_ordered_to_pay_support_yes',
+      'field_type': 'yesno',
+      },
+      {'variable': 'payment_by_defendant_is_weekly_yes',
+       'transformed_variable': 'payment_by_defendant_is_weekly_yes',
+      'field_type': 'yesno',
+      },
+      {'variable': 'payment_by_defendant_is_monthly_yes',
+       'transformed_variable': 'payment_by_defendant_is_monthly_yes',
+      'field_type': 'yesno',
+      },
+      {'variable': 'payment_by_defendant_sum',
+       'transformed_variable': 'payment_by_defendant_sum',
+      'field_type': 'text',
+      'field_data_type': 'text',
+      },
+      {'variable': 'defendant_was_ordered_to_comply_with_parenting_time_yes',
+       'transformed_variable': 'other_parties[0].was_ordered_to_comply_with_parenting_time_yes',
+      'field_type': 'yesno',
+      },
+      {'variable': 'defendant_was_ordered_to_not_impose_restraint_yes',
+       'transformed_variable': 'other_parties[0].was_ordered_to_not_impose_restraint_yes',
+      'field_type': 'yesno',
+      },
+      {'variable': 'defendant_was_ordered_to_pay_health_insurance_yes',
+       'transformed_variable': 'other_parties[0].was_ordered_to_pay_health_insurance_yes',
+      'field_type': 'yesno',
+      },
+      {'variable': 'defendant_was_ordered_to_pay_health_insurance_to_plaintiff_yes',
+       'transformed_variable': 'other_parties[0].was_ordered_to_pay_health_insurance_to_plaintiff_yes',
+      'field_type': 'yesno',
+      },
+      {'variable': 'defendant_was_ordered_to_pay_health_insurance_to_children_yes',
+       'transformed_variable': 'other_parties[0].was_ordered_to_pay_health_insurance_to_children_yes',
+      'field_type': 'yesno',
+      },
+      {'variable': 'defendant_was_ordered_to_pay_medical_expenses_yes',
+       'transformed_variable': 'other_parties[0].was_ordered_to_pay_medical_expenses_yes',
+      'field_type': 'yesno',
+      },
+      {'variable': 'defendant_was_ordered_to_pay_medical_expenses_to_plaintiff_yes',
+       'transformed_variable': 'other_parties[0].was_ordered_to_pay_medical_expenses_to_plaintiff_yes',
+      'field_type': 'yesno',
+      },
+      {'variable': 'defendant_was_ordered_to_pay_medical_expenses_to_children_yes',
+       'transformed_variable': 'other_parties[0].was_ordered_to_pay_medical_expenses_to_children_yes',
+      'field_type': 'yesno',
+      },
+      {'variable': 'defendant_was_ordered_other_yes',
+       'transformed_variable': 'other_parties[0].was_ordered_other_yes',
+      'field_type': 'yesno',
+      },
+      {'variable': 'contempt_from_judgment_yes__2',
+       'transformed_variable': 'contempt_from_judgment_yes',
+      'field_type': 'yesno',
+      },
+      {'variable': 'contempt_from_order_yes__2',
+       'transformed_variable': 'contempt_from_order_yes',
+      'field_type': 'yesno',
+      },
+      {'variable': 'contempt_from_judgment_yes__3',
+       'transformed_variable': 'contempt_from_judgment_yes',
+      'field_type': 'yesno',
+      },
+      {'variable': 'contempt_from_order_yes__3',
+       'transformed_variable': 'contempt_from_order_yes',
+      'field_type': 'yesno',
+      },
+      {'variable': 'arrears_in_support_payments_yes',
+       'transformed_variable': 'arrears_in_support_payments_yes',
+      'field_type': 'yesno',
+      },
+      {'variable': 'there_is_now_due_and_unpaid_sum_to_plaintiff_yes',
+       'transformed_variable': 'there_is_now_due_and_unpaid_sum_to_plaintiff_yes',
+      'field_type': 'yesno',
+      },
+      {'variable': 'due_and_unpaid_sum_total',
+       'transformed_variable': 'due_and_unpaid_sum_total',
+      'field_type': 'text',
+      'field_data_type': 'text',
+      },
+      {'variable': 'plaintiff_has_denied_parenting_time_yes',
+       'transformed_variable': 'users[0].has_denied_parenting_time_yes',
+      'field_type': 'yesno',
+      },
+      {'variable': 'denied_parenting_time_date',
+       'transformed_variable': 'denied_parenting_time_date',
+      'field_type': 'text',
+      'field_data_type': 'date',
+      },
+      {'variable': 'defendant_has_violated_order_yes',
+       'transformed_variable': 'other_parties[0].has_violated_order_yes',
+      'field_type': 'yesno',
+      },
+      {'variable': 'defendant_has_violated_order_date',
+       'transformed_variable': 'other_parties[0].has_violated_order_date',
+      'field_type': 'text',
+      'field_data_type': 'date',
+      },
+      {'variable': 'defendant_has_violated_order_description',
+       'transformed_variable': 'other_parties[0].has_violated_order_description',
+      'field_type': 'text',
+      'field_data_type': 'text',
+      },
+      {'variable': 'plaintiff_or_attorney_signature_date',
+       'transformed_variable': 'users[0].or_attorney_signature_date',
+      'field_type': 'text',
+      'field_data_type': 'date',
+      },
+      {'variable': 'attorney_BBO',
+       'transformed_variable': 'attorneys[0].BBO',
+      'field_type': 'text',
+      'field_data_type': 'text',
+      },
+      ],
+  })
+# ---
+# mandatory: True
+# code: |
+#   users = plaintiffs
+#   other_parties = defendants
+---
+question: |
+  Amount of Payment
+subquestion: |
+  How much are the weekly/monthly payments?
+fields:
+  - 'Payment by defendant sum': payment_by_defendant_sum
+---
+question: |
+  Arrears of Court-Ordered Support Payments
+subquestion: |
+  Is the defendant behind on court-ordered support payments?
+yesno: arrears_in_support_payments_yes
+---
+question: |
+  Attorney/Pro Se (Representing Yourself) Information
+subquestion: |
+  What is today's date? If you are an attorney, please write in your B.B.O. #.
+fields:
+  - 'Date of plaintiff or attorney signature': users[0].or_attorney_signature_date
+    datatype: date
+  - 'Attorney bbo': attorneys[0].BBO
+---
+question: |
+  Civil or Criminal?
+subquestion: |
+  Is this complaint regarding a civil or criminal matter?
+fields:
+  - 'Complaint for contempt civil': complaint_for_contempt_civil_yes
+    datatype: yesno
+  - 'Complaint for contempt criminal': complaint_for_contempt_criminal_yes
+    datatype: yesno
+---
+question: |
+  Court Ordered Parenting Time
+subquestion: |
+  Was the defendant ordered to comply with court ordered parenting time?
+yesno: other_parties[0].was_ordered_to_comply_with_parenting_time_yes
+---
+question: |
+  Date of Judgment or Order of the Court
+subquestion: |
+  What was the date of the judgment or order of the court?
+fields:
+  - 'Date of order or judgment': order_or_judgment_date
+    datatype: date
+---
+question: |
+  Defendant's Middle Initial
+subquestion: |
+  What is the defendant's middle initial?
+fields:
+  - 'Defendant name middle initial': other_parties[0].name_middle_initial
+---
+question: |
+  Denial of Parenting Time
+subquestion: |
+  Have you been denied parenting time? If so, on what date?
+fields:
+  - 'Plaintiff has denied parenting time': users[0].has_denied_parenting_time_yes
+    datatype: yesno
+  - 'Date of denied parenting time': denied_parenting_time_date
+    datatype: date
+---
+question: |
+  Due and Unpaid Payments
+subquestion: |
+  Are you owed payment, and if so how much?
+fields:
+  - 'There is now due and unpaid sum to plaintiff': there_is_now_due_and_unpaid_sum_to_plaintiff_yes
+    datatype: yesno
+  - 'Due and unpaid sum total': due_and_unpaid_sum_total
+---
+question: |
+  Health Insurance Premiums
+subquestion: |
+  Was the defendant ordered to pay health insurance premiums for the plaintiff and/or child(ren)?
+fields:
+  - 'Defendant was ordered to pay health insurance': other_parties[0].was_ordered_to_pay_health_insurance_yes
+    datatype: yesno
+  - 'Defendant was ordered to pay health insurance to plaintiff': other_parties[0].was_ordered_to_pay_health_insurance_to_plaintiff_yes
+    datatype: yesno
+  - 'Defendant was ordered to pay health insurance to children': other_parties[0].was_ordered_to_pay_health_insurance_to_children_yes
+    datatype: yesno
+---
+question: |
+  Is the judgment/order still active?
+subquestion: |
+  Is the judgment/order still in force? (Please select one).
+fields:
+  - 'Contempt from judgment yes  2': contempt_from_judgment_yes
+    datatype: yesno
+  - 'Contempt from order yes  2': contempt_from_order_yes
+    datatype: yesno
+---
+question: |
+  Judgment or Order of the Court
+subquestion: |
+  Is this stemming from a judgment or order of the court?
+fields:
+  - 'Contempt from judgment': contempt_from_judgment_yes
+    datatype: yesno
+  - 'Contempt from order': contempt_from_order_yes
+    datatype: yesno
+---
+question: |
+  Medical and Dental Expenses
+subquestion: |
+  Was the defendant ordered to pay any medical and dental expenses for the plaintiff and/or any child(ren)?
+fields:
+  - 'Defendant was ordered to pay medical expenses': other_parties[0].was_ordered_to_pay_medical_expenses_yes
+    datatype: yesno
+  - 'Defendant was ordered to pay medical expenses to plaintiff': other_parties[0].was_ordered_to_pay_medical_expenses_to_plaintiff_yes
+    datatype: yesno
+  - 'Defendant was ordered to pay medical expenses to children': other_parties[0].was_ordered_to_pay_medical_expenses_to_children_yes
+    datatype: yesno
+---
+question: |
+  Order/Judgment Violated?
+subquestion: |
+  Has the defendant violated the order/judgment? (Please select one).
+fields:
+  - 'Contempt from judgment yes  3': contempt_from_judgment_yes
+    datatype: yesno
+  - 'Contempt from order yes  3': contempt_from_order_yes
+    datatype: yesno
+---
+question: |
+  Other Order
+subquestion: |
+  Has the defendant violated any other order? If so, when and how?
+fields:
+  - 'Defendant has violated order': other_parties[0].has_violated_order_yes
+    datatype: yesno
+  - 'Date of defendant has violated order': other_parties[0].has_violated_order_date
+    datatype: date
+  - 'Defendant has violated order description': other_parties[0].has_violated_order_description
+---
+question: |
+  Other Order/Judgment
+subquestion: |
+  Was there another order in place that the defendant violated? (No need to specify).
+yesno: other_parties[0].was_ordered_other_yes
+---
+question: |
+  Payment Frequency
+subquestion: |
+  Was defendant ordered to pay on a weekly or monthly basis?
+fields:
+  - 'Payment by defendant is weekly': payment_by_defendant_is_weekly_yes
+    datatype: yesno
+  - 'Payment by defendant is monthly': payment_by_defendant_is_monthly_yes
+    datatype: yesno
+# ---
+# question: |
+#  Plaintiff's Middle Initial
+# subquestion: |
+#  What is your middle initial?
+# fields:
+#  - 'Plaintiff name middle intial': users[0].name_middle_intial
+---
+code: |
+  # We set the name_middle_initial to the first letter of the user's middle name
+  # users[0] is an object in a list named `users`. an Individual Object
+  # https://docassemble.org/docs/objects.html#Individual
+  # users[0].name is also an object, of type IndividualName 
+  # https://docassemble.org/docs/objects.html#IndividualName
+  # users[0]
+  # row1: name: is itself an object, with name.first, name.middle, name.last, name.suffix
+  # row2: birthdate
+  # row3: gender
+  users[0].name_middle_intial = users[0].name.middle[:1]
+---
+code: |
+  other_parties[0].name_middle_initial = other_parties[0].name.middle[:1]
+---
+question: |
+  Restraint on Personal Liberty
+subquestion: |
+  Did the court order the defendant not to impose any restraint on the personal liberty of the plaintiff?
+yesno: other_parties[0].was_ordered_to_not_impose_restraint_yes
+---
+question: |
+  Was defendant ordered to pay alimony and/or support for minor or dependent child(ren)?
+subquestion: |
+  If so, select the applicable option(s).
+fields:
+  - 'Defendant was ordered to pay': other_parties[0].was_ordered_to_pay_yes
+    datatype: yesno
+  - 'Defendant was ordered to pay alimony': other_parties[0].was_ordered_to_pay_alimony_yes
+    datatype: yesno
+  - 'Defendant was ordered to pay support': other_parties[0].was_ordered_to_pay_support_yes
+    datatype: yesno
+---
+progress: 100
+mandatory: True
+question: |
+  Placeholder download screen
+subquestion: |
+  Placeholder
+  
+  ### Next steps
+  
+  1. Step 1
+  1. Step 2
+  
+  Below is a preview of your form.
+  
+  ${cjd103_print_to_Adobe_PDF_labels_added0013_attachment }
+attachment code: cjd103_print_to_Adobe_PDF_labels_added0013_attachment
+---
+need: cjd103_print_to_Adobe_PDF_labels_added0013
+attachment:
+    variable name: cjd103_print_to_Adobe_PDF_labels_added0013_attachment
+    name: Complaint for Contempt
+    filename: Complaint_for_Contempt
+    pdf template file: cjd103_print_to_Adobe_PDF_labels_added.pdf
+    fields: 
+      - "docket_number": ${ docket_numbers[0] }
+      - "plaintiff_name_last": ${ users[0].name.last }
+      - "plaintiff_name_first": ${ users[0].name.first }
+      - "court_county": ${ courts[0].address.county }
+      - "defendant_name_last": ${ other_parties[0].name.last }
+      - "defendant_name_first": ${ other_parties[0].name.first }
+      - "plaintiff_address_street": ${ users[0].address.address }
+      - "plaintiff_address_street2": ${ users[0].address.unit }
+      - "plaintiff_address_city": ${ users[0].address.city }
+      - "plaintiff_address_state": ${ users[0].address.state }
+      - "plaintiff_address_zip": ${ users[0].address.zip }
+      - "defendant_address_street": ${ other_parties[0].address.address }
+      - "defendant_address_street2": ${ other_parties[0].address.unit }
+      - "defendant_address_city": ${ other_parties[0].address.city }
+      - "defendant_address_state": ${ other_parties[0].address.state }
+      - "defendant_address_zip": ${ other_parties[0].address.zip }
+      - "attorney_name_full": ${ str(attorneys[0]) }
+      - "attorney_address_street": ${ attorneys[0].address.address }
+      - "attorney_address_street2": ${ attorneys[0].address.unit }
+      - "attorney_address_city": ${ attorneys[0].address.city }
+      - "attorney_address_state": ${ attorneys[0].address.state }
+      - "attorney_address_zip": ${ attorneys[0].address.zip }
+      - "attorney_phone": ${ attorneys[0].phone_number }
+      - "complaint_for_contempt_civil_yes": ${ complaint_for_contempt_civil_yes }
+      - "complaint_for_contempt_criminal_yes": ${ complaint_for_contempt_criminal_yes }
+      - "plaintiff_name_middle_intial": ${ users[0].name_middle_intial }
+      - "defendant_name_middle_initial": ${ other_parties[0].name_middle_initial }
+      - "contempt_from_judgment_yes": ${ contempt_from_judgment_yes }
+      - "contempt_from_order_yes": ${ contempt_from_order_yes }
+      - "order_or_judgment_date": ${ order_or_judgment_date }
+      - "defendant_was_ordered_to_pay_yes": ${ other_parties[0].was_ordered_to_pay_yes }
+      - "defendant_was_ordered_to_pay_alimony_yes": ${ other_parties[0].was_ordered_to_pay_alimony_yes }
+      - "defendant_was_ordered_to_pay_support_yes": ${ other_parties[0].was_ordered_to_pay_support_yes }
+      - "payment_by_defendant_is_weekly_yes": ${ payment_by_defendant_is_weekly_yes }
+      - "payment_by_defendant_is_monthly_yes": ${ payment_by_defendant_is_monthly_yes }
+      - "payment_by_defendant_sum": ${ payment_by_defendant_sum }
+      - "defendant_was_ordered_to_comply_with_parenting_time_yes": ${ other_parties[0].was_ordered_to_comply_with_parenting_time_yes }
+      - "defendant_was_ordered_to_not_impose_restraint_yes": ${ other_parties[0].was_ordered_to_not_impose_restraint_yes }
+      - "defendant_was_ordered_to_pay_health_insurance_yes": ${ other_parties[0].was_ordered_to_pay_health_insurance_yes }
+      - "defendant_was_ordered_to_pay_health_insurance_to_plaintiff_yes": ${ other_parties[0].was_ordered_to_pay_health_insurance_to_plaintiff_yes }
+      - "defendant_was_ordered_to_pay_health_insurance_to_children_yes": ${ other_parties[0].was_ordered_to_pay_health_insurance_to_children_yes }
+      - "defendant_was_ordered_to_pay_medical_expenses_yes": ${ other_parties[0].was_ordered_to_pay_medical_expenses_yes }
+      - "defendant_was_ordered_to_pay_medical_expenses_to_plaintiff_yes": ${ other_parties[0].was_ordered_to_pay_medical_expenses_to_plaintiff_yes }
+      - "defendant_was_ordered_to_pay_medical_expenses_to_children_yes": ${ other_parties[0].was_ordered_to_pay_medical_expenses_to_children_yes }
+      - "defendant_was_ordered_other_yes": ${ other_parties[0].was_ordered_other_yes }
+      - "contempt_from_judgment_yes__2": ${ contempt_from_judgment_yes }
+      - "contempt_from_order_yes__2": ${ contempt_from_order_yes }
+      - "contempt_from_judgment_yes__3": ${ contempt_from_judgment_yes }
+      - "contempt_from_order_yes__3": ${ contempt_from_order_yes }
+      - "arrears_in_support_payments_yes": ${ arrears_in_support_payments_yes }
+      - "there_is_now_due_and_unpaid_sum_to_plaintiff_yes": ${ there_is_now_due_and_unpaid_sum_to_plaintiff_yes }
+      - "due_and_unpaid_sum_total": ${ due_and_unpaid_sum_total }
+      - "plaintiff_has_denied_parenting_time_yes": ${ users[0].has_denied_parenting_time_yes }
+      - "denied_parenting_time_date": ${ denied_parenting_time_date }
+      - "defendant_has_violated_order_yes": ${ other_parties[0].has_violated_order_yes }
+      - "defendant_has_violated_order_date": ${ other_parties[0].has_violated_order_date }
+      - "defendant_has_violated_order_description": ${ other_parties[0].has_violated_order_description }
+      - "plaintiff_or_attorney_signature_date": ${ signature_date }
+      - "attorney_BBO": ${ attorneys[0].BBO }
+      - "plaintiff_or_attorney_signature": ${ users[0].signature }
+---
+include:
+  - docassemble.MAVirtualCourt:data/questions/form-actions.yml
+
+  - docassemble.MAVirtualCourt:data/questions/basic-questions.yml
+---
+comment: |
+  This question is used to introduce your interview. Please customize
+continue button field: cjd103_print_to_Adobe_PDF_labels_added0013_intro
+question: |
+  Complaint for Contempt
+subquestion: |
+  Complaint for Contempt
+---
+id: interview_order_cjd103_print_to_Adobe_PDF_labels_added0013
+code: |
+  # This is a placeholder to control logic flow in this interview
+  # It was generated from interview_generator.py as an 'interview order' type question.
+  basic_questions_intro_screen 
+  cjd103_print_to_Adobe_PDF_labels_added0013_intro
+  # Set the preferred/allowed courts for this interview
+  preferred_court = interview_metadata["cjd103_print_to_Adobe_PDF_labels_added0013"]["preferred court"]
+  allowed_courts = interview_metadata["cjd103_print_to_Adobe_PDF_labels_added0013"]["allowed courts"]
+  complaint_for_contempt_civil_yes
+  users[0].name_middle_intial
+  other_parties[0].name_middle_initial
+  contempt_from_judgment_yes
+  order_or_judgment_date
+  other_parties[0].was_ordered_to_pay_yes
+  payment_by_defendant_is_weekly_yes
+  payment_by_defendant_sum
+  other_parties[0].was_ordered_to_comply_with_parenting_time_yes
+  other_parties[0].was_ordered_to_not_impose_restraint_yes
+  other_parties[0].was_ordered_to_pay_health_insurance_yes
+  other_parties[0].was_ordered_to_pay_medical_expenses_yes
+  other_parties[0].was_ordered_other_yes
+  contempt_from_judgment_yes
+  contempt_from_judgment_yes
+  arrears_in_support_payments_yes
+  there_is_now_due_and_unpaid_sum_to_plaintiff_yes
+  users[0].has_denied_parenting_time_yes
+  other_parties[0].has_violated_order_yes
+  users[0].or_attorney_signature_date
+  docket_numbers[0]
+  users[0].name.last
+  users[0].name.first
+  courts[0].address.county
+  other_parties[0].name.last
+  other_parties[0].name.first
+  users[0].address.address
+  users[0].address.unit
+  users[0].address.city
+  users[0].address.state
+  users[0].address.zip
+  other_parties[0].address.address
+  other_parties[0].address.unit
+  other_parties[0].address.city
+  other_parties[0].address.state
+  other_parties[0].address.zip
+  str(attorneys[0])
+  attorneys[0].address.address
+  attorneys[0].address.unit
+  attorneys[0].address.city
+  attorneys[0].address.state
+  attorneys[0].address.zip
+  attorneys[0].phone_number
+  # By default, we'll mark any un-filled fields as DAEmpty(). This helps avoid errors if you intentionally hide a logic branch or mark a question not required
+  # Comment out the line below if you don't want this behavior. 
+  mark_unfilled_fields_empty(interview_metadata["cjd103_print_to_Adobe_PDF_labels_added0013"])
+  cjd103_print_to_Adobe_PDF_labels_added0013_preview_question # Pre-canned preview screen
+  basic_questions_signature_flow
+  cjd103_print_to_Adobe_PDF_labels_added0013 = True
+---
+continue button field: cjd103_print_to_Adobe_PDF_labels_added0013_preview_question
+question: |
+  Placeholder preview screen
+subquestion: |
+  Here is a preview of the form you'll sign on the next page. 
+  
+   ${cjd103_print_to_Adobe_PDF_labels_added0013_attachment_preview}
+---
+attachment:
+    variable name: cjd103_print_to_Adobe_PDF_labels_added0013_attachment_preview
+    name: Complaint for Contempt
+    filename: Complaint_for_Contempt
+    pdf template file: cjd103_print_to_Adobe_PDF_labels_added.pdf
+    fields: 
+      - "docket_number": ${ docket_numbers[0] }
+      - "plaintiff_name_last": ${ users[0].name.last }
+      - "plaintiff_name_first": ${ users[0].name.first }
+      - "court_county": ${ courts[0].address.county }
+      - "defendant_name_last": ${ other_parties[0].name.last }
+      - "defendant_name_first": ${ other_parties[0].name.first }
+      - "plaintiff_address_street": ${ users[0].address.address }
+      - "plaintiff_address_street2": ${ users[0].address.unit }
+      - "plaintiff_address_city": ${ users[0].address.city }
+      - "plaintiff_address_state": ${ users[0].address.state }
+      - "plaintiff_address_zip": ${ users[0].address.zip }
+      - "defendant_address_street": ${ other_parties[0].address.address }
+      - "defendant_address_street2": ${ other_parties[0].address.unit }
+      - "defendant_address_city": ${ other_parties[0].address.city }
+      - "defendant_address_state": ${ other_parties[0].address.state }
+      - "defendant_address_zip": ${ other_parties[0].address.zip }
+      - "attorney_name_full": ${ str(attorneys[0]) }
+      - "attorney_address_street": ${ attorneys[0].address.address }
+      - "attorney_address_street2": ${ attorneys[0].address.unit }
+      - "attorney_address_city": ${ attorneys[0].address.city }
+      - "attorney_address_state": ${ attorneys[0].address.state }
+      - "attorney_address_zip": ${ attorneys[0].address.zip }
+      - "attorney_phone": ${ attorneys[0].phone_number }
+      - "complaint_for_contempt_civil_yes": ${ complaint_for_contempt_civil_yes }
+      - "complaint_for_contempt_criminal_yes": ${ complaint_for_contempt_criminal_yes }
+      - "plaintiff_name_middle_intial": ${ users[0].name_middle_intial }
+      - "defendant_name_middle_initial": ${ other_parties[0].name_middle_initial }
+      - "contempt_from_judgment_yes": ${ contempt_from_judgment_yes }
+      - "contempt_from_order_yes": ${ contempt_from_order_yes }
+      - "order_or_judgment_date": ${ order_or_judgment_date }
+      - "defendant_was_ordered_to_pay_yes": ${ other_parties[0].was_ordered_to_pay_yes }
+      - "defendant_was_ordered_to_pay_alimony_yes": ${ other_parties[0].was_ordered_to_pay_alimony_yes }
+      - "defendant_was_ordered_to_pay_support_yes": ${ other_parties[0].was_ordered_to_pay_support_yes }
+      - "payment_by_defendant_is_weekly_yes": ${ payment_by_defendant_is_weekly_yes }
+      - "payment_by_defendant_is_monthly_yes": ${ payment_by_defendant_is_monthly_yes }
+      - "payment_by_defendant_sum": ${ payment_by_defendant_sum }
+      - "defendant_was_ordered_to_comply_with_parenting_time_yes": ${ other_parties[0].was_ordered_to_comply_with_parenting_time_yes }
+      - "defendant_was_ordered_to_not_impose_restraint_yes": ${ other_parties[0].was_ordered_to_not_impose_restraint_yes }
+      - "defendant_was_ordered_to_pay_health_insurance_yes": ${ other_parties[0].was_ordered_to_pay_health_insurance_yes }
+      - "defendant_was_ordered_to_pay_health_insurance_to_plaintiff_yes": ${ other_parties[0].was_ordered_to_pay_health_insurance_to_plaintiff_yes }
+      - "defendant_was_ordered_to_pay_health_insurance_to_children_yes": ${ other_parties[0].was_ordered_to_pay_health_insurance_to_children_yes }
+      - "defendant_was_ordered_to_pay_medical_expenses_yes": ${ other_parties[0].was_ordered_to_pay_medical_expenses_yes }
+      - "defendant_was_ordered_to_pay_medical_expenses_to_plaintiff_yes": ${ other_parties[0].was_ordered_to_pay_medical_expenses_to_plaintiff_yes }
+      - "defendant_was_ordered_to_pay_medical_expenses_to_children_yes": ${ other_parties[0].was_ordered_to_pay_medical_expenses_to_children_yes }
+      - "defendant_was_ordered_other_yes": ${ other_parties[0].was_ordered_other_yes }
+      - "contempt_from_judgment_yes__2": ${ contempt_from_judgment_yes }
+      - "contempt_from_order_yes__2": ${ contempt_from_order_yes }
+      - "contempt_from_judgment_yes__3": ${ contempt_from_judgment_yes }
+      - "contempt_from_order_yes__3": ${ contempt_from_order_yes }
+      - "arrears_in_support_payments_yes": ${ arrears_in_support_payments_yes }
+      - "there_is_now_due_and_unpaid_sum_to_plaintiff_yes": ${ there_is_now_due_and_unpaid_sum_to_plaintiff_yes }
+      - "due_and_unpaid_sum_total": ${ due_and_unpaid_sum_total }
+      - "plaintiff_has_denied_parenting_time_yes": ${ users[0].has_denied_parenting_time_yes }
+      - "denied_parenting_time_date": ${ denied_parenting_time_date }
+      - "defendant_has_violated_order_yes": ${ other_parties[0].has_violated_order_yes }
+      - "defendant_has_violated_order_date": ${ other_parties[0].has_violated_order_date }
+      - "defendant_has_violated_order_description": ${ other_parties[0].has_violated_order_description }
+      - "plaintiff_or_attorney_signature_date": ${ signature_date }
+      - "attorney_BBO": ${ attorneys[0].BBO }
