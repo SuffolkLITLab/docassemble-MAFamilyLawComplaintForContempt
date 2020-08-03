@@ -366,26 +366,6 @@ fields:
     show if: other_parties[0].was_ordered_to_pay_health_insurance_yes
 ---
 question: |
-  Is the judgment/order still active?
-subquestion: |
-  Is the judgment/order still in force? (Please select one).
-fields:
-  - 'Contempt from judgment yes  2': contempt_from_judgment_yes
-    datatype: yesno
-  - 'Contempt from order yes  2': contempt_from_order_yes
-    datatype: yesno
----
-question: |
-  Judgment or Order of the Court
-subquestion: |
-  Is this stemming from a judgment or order of the court?
-fields:
-  - 'Contempt from judgment': contempt_from_judgment_yes
-    datatype: yesno
-  - 'Contempt from order': contempt_from_order_yes
-    datatype: yesno
----
-question: |
   Medical and Dental Expenses
 subquestion: |
   Is this contempt about the defendant being ordered to pay any medical and/or dental expenses for you and/or any child(ren)? If so, please specify.
@@ -413,7 +393,7 @@ fields:
 ---
 code: |
   contempt_from_judgment_yes = judgment_or_order == "judgment"
-  contempt_from_order_yes = judgment_or_order == "order of the court"
+  contempt_from_order_yes = judgment_or_order == "order of the Court"
 ---
 question: |
   Other Order
@@ -621,7 +601,6 @@ need: cjd103_print_to_Adobe_PDF_labels_added0013
 attachment:
     variable name: cjd103_print_to_Adobe_PDF_labels_added0013_attachment
     name: Complaint for Contempt
-    skip undefined: True 
     filename: Complaint_for_Contempt
     pdf template file: family_law_complaint_for_contempt.pdf
     fields: 
@@ -631,11 +610,11 @@ attachment:
       - "court_county": ${ courts[0].address.county }
       - "defendant_name_last": ${ other_parties[0].name.last }
       - "defendant_name_first": ${ other_parties[0].name.first }
-      - "plaintiff_address_street": ${ users[0].address.address }
-      - "plaintiff_address_street2": ${ users[0].address.unit }
-      - "plaintiff_address_city": ${ users[0].address.city }
-      - "plaintiff_address_state": ${ users[0].address.state }
-      - "plaintiff_address_zip": ${ users[0].address.zip }
+      - "plaintiff_address_street": ${ users[0].address.address if not address_impounded else "Address Impounded" }
+      - "plaintiff_address_street2": ${ users[0].address.unit if not address_impounded else "Address Impounded" }
+      - "plaintiff_address_city": ${ users[0].address.city if not address_impounded else "Address Impounded" }
+      - "plaintiff_address_state": ${ users[0].address.state if not address_impounded else "Address Impounded" }
+      - "plaintiff_address_zip": ${ users[0].address.zip if not address_impounded else "Address Impounded" }
       - "defendant_address_street": ${ other_parties[0].address.address }
       - "defendant_address_street2": ${ other_parties[0].address.unit }
       - "defendant_address_city": ${ other_parties[0].address.city }
@@ -834,7 +813,6 @@ code: |
 attachment:
     variable name: cjd103_print_to_Adobe_PDF_labels_added0013_attachment_preview
     name: Complaint for Contempt
-    skip undefined: True 
     filename: Complaint_for_Contempt
     pdf template file: family_law_complaint_for_contempt.pdf
     fields: 
@@ -917,3 +895,15 @@ code: |
     other_order_description_cutoff = other_order_description
   add_addendum = need_violated_order_description_addendum or need_other_order_description_addendum
 ---
+code: |
+  if user_has_attorney_yes is False: 
+    attorneys[i].name.first = ''
+--- 
+code: |
+  if user_has_attorney_yes is False: 
+    attorneys[i].name.last = ''
+--- 
+code: |
+  if user_has_attorney_yes is False: 
+    attorneys[i].name.suffix = ''
+--- 
