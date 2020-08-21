@@ -290,7 +290,7 @@ fields:
     datatype: yesno
   - Health Insurance Premiums: contempt_health_insurance_yes
     datatype: yesno
-  - Mental and Dental Expense: contempt_medical_yes
+  - Mental and Dental Expenses: contempt_medical_yes
     datatype: yesno
   - Other: contempt_other_yes
     datatype: yesno
@@ -316,33 +316,52 @@ fields:
 ---
 code: |
   if user_has_children_yes is False: 
-    number_of_children = ''
+    number_of_children = 'child' 
 ---
-id: payment amount
+id: alimony payment amount
 question: |
   Amount of Payment
 subquestion: |
-  How much are the ${weekly_or_monthly} payments?
+  How much are the ${weekly_or_monthly_alimony} alimony payments?
 fields:
-  - 'Sum of ${weekly_or_monthly} payments': payment_by_defendant_sum
+  - 'Sum of ${weekly_or_monthly_alimony} payments': payment_by_defendant_sum_alimony
     datatype: currency
     min: 0
     required: true
 ---
-id: court-ordered payments
+id: child support payment amount
 question: |
-  Overdue Court-Ordered Support Payments
+  Amount of Payment
 subquestion: |
-  Is ${other_parties[0].name} behind on these court-ordered support payments?
-yesno: arrears_in_support_payments_yes
+  How much are the ${weekly_or_monthly_child_support} child support payments?
+fields:
+  - 'Sum of ${weekly_or_monthly_child_support} payments': payment_by_defendant_sum_child_support
+    datatype: currency
+    min: 0
+    required: true
+---
+code:  |
+  payment_by_defendant_sum = (payment_by_defendant_sum_alimony + payment_by_defendant_sum_child_support)
+---
+id: overdue alimony payments
+question: |
+  Overdue Alimony Payments
+subquestion: |
+  Is ${other_parties[0].name} behind on these court-ordered alimony payments?
+yesno: arrears_in_support_payments_yes_alimony
+---
+id: overdue child support payments
+question: |
+  Overdue Child Support Payments
+subquestion: |
+  Is ${other_parties[0].name} behind on these court-ordered child support payments?
+yesno: arrears_in_support_payments_yes_child_support
 ---
 id: attorney
 question: |
-  Do you have an attorney?
-subquestion: | 
-  Are you being represented by an attorney in this case?
+  Are you an attorney?
 fields:
-  - 'Do you have an attorney?': user_has_attorney_yes
+  - 'Are you an attorney?': user_has_attorney_yes
     datatype: yesnoradio
 ---
 id: signature date
@@ -401,45 +420,63 @@ fields:
     datatype: text
     maxlength: 40 
 ---
-id: overdue payments
+id: overdue alimony payments
 question: |
-  Overdue Payments
+  Overdue Alimony Payments
 subquestion: |
-  How much does ${other_parties[0].name} owe you? 
+  How much alimony does ${other_parties[0].name} owe you? 
 fields:
-  - 'Amount ${other_parties[0].name} owes you': due_and_unpaid_sum_total
+  - 'Amount of alimony ${other_parties[0].name} owes you': due_and_unpaid_sum_total_alimony
     datatype: currency
     min: 0 
+---
+id: overdue child support payments
+question: |
+  Overdue Child Support Payments
+subquestion: |
+  How much child support does ${other_parties[0].name} owe you? 
+fields:
+  - 'Amount of child support ${other_parties[0].name} owes you': due_and_unpaid_sum_total_child_support
+    datatype: currency
+    min: 0 
+---
+id: health insurance intro
+question:  |
+  Health Insurance Premiums
+subquestion:  |
+  Your previously indicated that this complaint involves health insurance premiums. Was ${other_parties[0].name} ordered to pay health insurance premiums for you and/or any ${number_of_children}? 
+yesno: other_parties[0].was_ordered_to_pay_health_insurance_yes
 ---
 id: health insurance
 question: |
   Health Insurance Premiums
 subquestion: |
-  Was ${other_parties[0].name} ordered to pay health insurance premiums for you and/or any ${number_of_children}? 
+  Who was ${other_parties[0].name} ordered to pay health insurance premiums for?
 fields:
-  - 'Was ${other_parties[0].name} ordered to pay health insurance premiums?': other_parties[0].was_ordered_to_pay_health_insurance_yes
-    datatype: yesnoradio
-  - '${other_parties[0].name} was ordered to pay health insurance premiums for me': other_parties[0].was_ordered_to_pay_health_insurance_to_plaintiff_yes
-    datatype: yesnoradio
-    show if: other_parties[0].was_ordered_to_pay_health_insurance_yes
-  - '${other_parties[0].name} was ordered to pay health insurance premiums for my ${number_of_children}': other_parties[0].was_ordered_to_pay_health_insurance_to_children_yes
-    datatype: yesnoradio
-    show if: other_parties[0].was_ordered_to_pay_health_insurance_yes
+  - note: "Please select all that apply to your case."
+  - ${other_parties[0].name} was ordered to pay health insurance premiums for me: other_parties[0].was_ordered_to_pay_health_insurance_to_plaintiff_yes
+    datatype: yesno
+  - ${other_parties[0].name} was ordered to pay health insurance premiums for ${number_of_children}: other_parties[0].was_ordered_to_pay_health_insurance_to_children_yes
+    datatype: yesno
+---
+id: medical and dental intro
+question:  |
+  Medical and Dental Expenses
+subquestion:  |
+  Your previously indicated that this complaint involves medical and dental expenses. Was ${other_parties[0].name} ordered to pay any medical and/or dental expenses for you and/or any ${number_of_children}?
+yesno: other_parties[0].was_ordered_to_pay_medical_expenses_yes
 ---
 id: medical and dental
 question: |
   Medical and Dental Expenses
 subquestion: |
-  Was ${other_parties[0].name} ordered to pay any medical and/or dental expenses for you and/or any ${number_of_children}?
+  Who was ${other_parties[0].name} ordered to pay medical and/or dental expenses for?
 fields:
-  - 'Was ${other_parties[0].name} ordered to pay medical and/or dental expenses?': other_parties[0].was_ordered_to_pay_medical_expenses_yes
-    datatype: yesnoradio
-  - '${other_parties[0].name} was ordered to pay medical and/or dental expenses for me': other_parties[0].was_ordered_to_pay_medical_expenses_to_plaintiff_yes
-    datatype: yesnoradio
-    show if: other_parties[0].was_ordered_to_pay_medical_expenses_yes
-  - '${other_parties[0].name} was ordered to pay medical and/or dental expenses for my ${number_of_children}': other_parties[0].was_ordered_to_pay_medical_expenses_to_children_yes
-    datatype: yesnoradio
-    show if: other_parties[0].was_ordered_to_pay_medical_expenses_yes
+  - note: "Please select all that apply to your case."
+  - ${other_parties[0].name} was ordered to pay medical and/or dental expenses for me: other_parties[0].was_ordered_to_pay_medical_expenses_to_plaintiff_yes
+    datatype: yesno
+  - ${other_parties[0].name} was ordered to pay medical and/or dental expenses for ${number_of_children}: other_parties[0].was_ordered_to_pay_medical_expenses_to_children_yes
+    datatype: yesno
 ---
 id: judgment or order
 question: |
@@ -468,17 +505,18 @@ fields:
   - 'When did ${other_parties[0].name} violate the order': other_parties[0].has_violated_order_date
     datatype: text 
   - 'How has ${other_parties[0].name} violated the order?': other_parties[0].has_violated_order_description
+    input type: area
 ---
 id: other order violated 1 
 question: |
   Other Order Violated
 subquestion: |
-  Was there another order in place that ${other_parties[0].name} violated? If so, please specify. If you can, you should quote the exact words that the Court used in the ${judgment_or_order} that the defendant disobeyed. 
+  Was there another order in place that ${other_parties[0].name} violated? If so, please specify. If you can, you should quote the exact words that the Court used in the ${judgment_or_order} that ${other_parties[0].name} disobeyed. 
 fields:
   - 'Was there another order in place that ${other_parties[0].name} violated?': other_parties[0].was_ordered_other_yes
     datatype: yesnoradio
   - 'Description of order': other_order_description
-    datatype: text
+    input type: area
     show if: other_parties[0].was_ordered_other_yes 
     required: True
 ---
@@ -490,31 +528,47 @@ code: |
   if other_parties[0].was_ordered_other_yes is False: 
     other_order_description = ''
 ---
-id: payment frequency
+id: alimony payment frequency
 question: |
     Payment Frequency
 subquestion: |
-  Was defendant ordered to pay on a weekly or monthly basis?
+  Was ${other_parties[0].name} ordered to pay alimony on a weekly or monthly basis?
 fields:
-  - no label: weekly_or_monthly
+  - no label: weekly_or_monthly_alimony
     datatype: radio 
     choices: 
       - Weekly: weekly
       - Monthly: monthly
 ---
 code: |
-  payment_by_defendant_is_weekly_yes = weekly_or_monthly == "weekly"
-  payment_by_defendant_is_monthly_yes = weekly_or_monthly == "monthly"
+  payment_by_defendant_is_weekly_yes = weekly_or_monthly_alimony == "weekly"
+  payment_by_defendant_is_monthly_yes = weekly_or_monthly_alimony == "monthly"
+---
+id: child support payment frequency
+question: |
+    Payment Frequency
+subquestion: |
+  Was ${other_parties[0].name} ordered to pay child support on a weekly or monthly basis?
+fields:
+  - no label: weekly_or_monthly_child_support
+    datatype: radio 
+    choices: 
+      - Weekly: weekly
+      - Monthly: monthly
+---
+code: |
+  payment_by_defendant_is_weekly_yes = weekly_or_monthly_child_support == "weekly"
+  payment_by_defendant_is_monthly_yes = weekly_or_monthly_child_support == "monthly"
 ---
 id: docket numbers
 question: |
   What is the docket number for this case?
 subquestion: |
-  If there are multiple docket numbers on this form, you can click "${word("Add another")}"
-  to add more than one.
-list collect: True
+  If there are multiple docket numbers on this form, you can include multiple docket numbers below, so long as each docket number is seperated by a comma. Don't worry if you are unable to fit all docket numbers in the field below.
 fields:
   - no label: docket_numbers[i]
+    input type: area
+    maxlength: 45 
     required: True
 ---
 # ---
@@ -714,7 +768,7 @@ attachment:
       - "defendant_was_ordered_to_pay_support_yes": ${ other_parties[0].was_ordered_to_pay_support_yes }
       - "payment_by_defendant_is_weekly_yes": ${ payment_by_defendant_is_weekly_yes }
       - "payment_by_defendant_is_monthly_yes": ${ payment_by_defendant_is_monthly_yes }
-      - "payment_by_defendant_sum": ${ payment_by_defendant_sum }
+      - "payment_by_defendant_sum": ${ payment_by_defendant_sum_alimony + payment_by_defendant_sum_child_support }
       - "defendant_was_ordered_to_comply_with_parenting_time_yes": ${ other_parties[0].was_ordered_to_comply_with_parenting_time_yes }
       - "defendant_was_ordered_to_not_impose_restraint_yes": ${ other_parties[0].was_ordered_to_not_impose_restraint_yes }
       - "defendant_was_ordered_to_pay_health_insurance_yes": ${ other_parties[0].was_ordered_to_pay_health_insurance_yes }
@@ -729,9 +783,9 @@ attachment:
       - "contempt_from_order_yes__2": ${ contempt_from_order_yes }
       - "contempt_from_judgment_yes__3": ${ contempt_from_judgment_yes }
       - "contempt_from_order_yes__3": ${ contempt_from_order_yes }
-      - "arrears_in_support_payments_yes": ${ arrears_in_support_payments_yes }
-      - "there_is_now_due_and_unpaid_sum_to_plaintiff_yes": ${ arrears_in_support_payments_yes }
-      - "due_and_unpaid_sum_total": ${ due_and_unpaid_sum_total }
+      - "arrears_in_support_payments_yes": ${ arrears_in_support_payments_yes_alimony + arrears_in_support_payments_yes_child_support }
+      - "there_is_now_due_and_unpaid_sum_to_plaintiff_yes": ${ arrears_in_support_payments_yes_alimony + arrears_in_support_payments_yes_child_support }
+      - "due_and_unpaid_sum_total": ${ due_and_unpaid_sum_total_alimony + due_and_unpaid_sum_total_child_support }
       - "plaintiff_has_denied_parenting_time_yes": ${ other_parties[0].was_ordered_to_comply_with_parenting_time_yes }
       - "denied_parenting_time_date": ${ denied_parenting_time_date }
       - "defendant_has_violated_order_yes": ${ other_parties[0].was_ordered_other_yes }
@@ -823,19 +877,26 @@ code: |
   order_or_judgment_date
   if contempt_alimony_yes:
     if other_parties[0].was_ordered_to_pay_alimony_yes:
-      payment_by_defendant_is_weekly_yes
-      payment_by_defendant_sum
-      if arrears_in_support_payments_yes:
-        due_and_unpaid_sum_total
+      weekly_or_monthly_alimony
+      payment_by_defendant_sum_alimony
+      if arrears_in_support_payments_yes_alimony:
+        due_and_unpaid_sum_total_alimony
+    if other_parties[0].was_ordered_to_pay_support_yes:
+      weekly_or_monthly_child_support
+      payment_by_defendant_sum_child_support
+      if arrears_in_support_payments_yes_child_support:
+        due_and_unpaid_sum_total_child_support
   if contempt_parenting_time_yes:
     if other_parties[0].was_ordered_to_comply_with_parenting_time_yes:
       denied_parenting_time_date
   if contempt_personal_liberty_yes:
     other_parties[0].was_ordered_to_not_impose_restraint_yes
   if contempt_health_insurance_yes:
-    other_parties[0].was_ordered_to_pay_health_insurance_yes
+    if other_parties[0].was_ordered_to_pay_health_insurance_yes:
+      other_parties[0].was_ordered_to_pay_health_insurance_to_plaintiff_yes
   if contempt_medical_yes:
-    other_parties[0].was_ordered_to_pay_medical_expenses_yes
+    if other_parties[0].was_ordered_to_pay_medical_expenses_yes:
+      other_parties[0].was_ordered_to_pay_medical_expenses_to_plaintiff_yes
   if other_parties[0].was_ordered_other_yes:
     other_parties[0].has_violated_order_date
   docket_numbers[0]
@@ -933,7 +994,7 @@ attachment:
       - "defendant_was_ordered_to_pay_support_yes": ${ other_parties[0].was_ordered_to_pay_support_yes }
       - "payment_by_defendant_is_weekly_yes": ${ payment_by_defendant_is_weekly_yes }
       - "payment_by_defendant_is_monthly_yes": ${ payment_by_defendant_is_monthly_yes }
-      - "payment_by_defendant_sum": ${ payment_by_defendant_sum }
+      - "payment_by_defendant_sum": ${ payment_by_defendant_sum_alimony + payment_by_defendant_sum_child_support }
       - "defendant_was_ordered_to_comply_with_parenting_time_yes": ${ other_parties[0].was_ordered_to_comply_with_parenting_time_yes }
       - "defendant_was_ordered_to_not_impose_restraint_yes": ${ other_parties[0].was_ordered_to_not_impose_restraint_yes }
       - "defendant_was_ordered_to_pay_health_insurance_yes": ${ other_parties[0].was_ordered_to_pay_health_insurance_yes }
@@ -948,9 +1009,9 @@ attachment:
       - "contempt_from_order_yes__2": ${ contempt_from_order_yes }
       - "contempt_from_judgment_yes__3": ${ contempt_from_judgment_yes }
       - "contempt_from_order_yes__3": ${ contempt_from_order_yes }
-      - "arrears_in_support_payments_yes": ${ arrears_in_support_payments_yes }
-      - "there_is_now_due_and_unpaid_sum_to_plaintiff_yes": ${ arrears_in_support_payments_yes }
-      - "due_and_unpaid_sum_total": ${ due_and_unpaid_sum_total }
+      - "arrears_in_support_payments_yes": ${ arrears_in_support_payments_yes_alimony + arrears_in_support_payments_yes_child_support }
+      - "there_is_now_due_and_unpaid_sum_to_plaintiff_yes": ${ arrears_in_support_payments_yes_alimony + arrears_in_support_payments_yes_child_support }
+      - "due_and_unpaid_sum_total": ${ due_and_unpaid_sum_total_alimony + due_and_unpaid_sum_total_child_support }
       - "plaintiff_has_denied_parenting_time_yes": ${ other_parties[0].was_ordered_to_comply_with_parenting_time_yes }
       - "denied_parenting_time_date": ${ denied_parenting_time_date }
       - "defendant_has_violated_order_yes": ${ other_parties[0].was_ordered_other_yes }
