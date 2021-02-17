@@ -795,7 +795,7 @@ code: |
   users[0].or_attorney_signature_date
   # By default, we'll mark any un-filled fields as DAEmpty(). This helps avoid errors if you intentionally hide a logic branch or mark a question not required
   # Comment out the line below if you don't want this behavior. 
-  mark_unfilled_fields_empty(interview_metadata["cjd103_print_to_Adobe_PDF_labels_added0013"])
+  # mark_unfilled_fields_empty(interview_metadata["cjd103_print_to_Adobe_PDF_labels_added0013"])
   cjd103_print_to_Adobe_PDF_labels_added0013_preview_question # Pre-canned preview screen
   basic_questions_signature_flow
   cjd103_print_to_Adobe_PDF_labels_added0013 = True
