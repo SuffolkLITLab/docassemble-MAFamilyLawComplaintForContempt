@@ -1,8 +1,3 @@
-# docassemble.MAFamilyLawComplaintForContempt
+# A Docassemble interview for the Massachusetts Complaint for Contempt
 
-A docassemble extension.
-
-## Author
-
-Jason Swadel, jswadel@su.suffolk.edu
-
+This is a Docassemble interview to complete the Massachusetts Complaint for Contempt forms online. The live interview can be found at [https://www.courtformsonline.org/family/#contempt](https://www.courtformsonline.org/family/#contempt).
