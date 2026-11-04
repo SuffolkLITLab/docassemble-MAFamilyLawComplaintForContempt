@@ -252,6 +252,7 @@ code: |
 #   users = plaintiffs
 #   other_parties = defendants
 ---
+id: "amount of payment"
 question: |
   Amount of Payment
 subquestion: |
@@ -259,12 +260,16 @@ subquestion: |
 fields:
   - 'Payment by defendant sum': payment_by_defendant_sum
 ---
+id: "arrears of court ordered support payments"
 question: |
   Arrears of Court-Ordered Support Payments
 subquestion: |
   Is the defendant behind on court-ordered support payments?
-yesno: arrears_in_support_payments_yes
+fields:
+  - no label: arrears_in_support_payments_yes
+    datatype: yesnoradio
 ---
+id: "attorney pro se representing yourself information"
 question: |
   Attorney/Pro Se (Representing Yourself) Information
 subquestion: |
@@ -274,6 +279,7 @@ fields:
     datatype: date
   - 'Attorney bbo': attorneys[0].BBO
 ---
+id: "civil or criminal"
 question: |
   Civil or Criminal?
 subquestion: |
@@ -284,12 +290,16 @@ fields:
   - 'Complaint for contempt criminal': complaint_for_contempt_criminal_yes
     datatype: yesno
 ---
+id: "court ordered parenting time"
 question: |
   Court Ordered Parenting Time
 subquestion: |
   Was the defendant ordered to comply with court ordered parenting time?
-yesno: other_parties[0].was_ordered_to_comply_with_parenting_time_yes
+fields:
+  - no label: "other_parties[0].was_ordered_to_comply_with_parenting_time_yes"
+    datatype: yesnoradio
 ---
+id: "date of judgment or order of the court"
 question: |
   Date of Judgment or Order of the Court
 subquestion: |
@@ -298,6 +308,7 @@ fields:
   - 'Date of order or judgment': order_or_judgment_date
     datatype: date
 ---
+id: "defendants middle initial"
 question: |
   Defendant's Middle Initial
 subquestion: |
@@ -305,6 +316,7 @@ subquestion: |
 fields:
   - 'Defendant name middle initial': other_parties[0].name_middle_initial
 ---
+id: "denial of parenting time"
 question: |
   Denial of Parenting Time
 subquestion: |
@@ -315,6 +327,7 @@ fields:
   - 'Date of denied parenting time': denied_parenting_time_date
     datatype: date
 ---
+id: "due and unpaid payments"
 question: |
   Due and Unpaid Payments
 subquestion: |
@@ -324,6 +337,7 @@ fields:
     datatype: yesno
   - 'Due and unpaid sum total': due_and_unpaid_sum_total
 ---
+id: "health insurance premiums"
 question: |
   Health Insurance Premiums
 subquestion: |
@@ -336,6 +350,7 @@ fields:
   - 'Defendant was ordered to pay health insurance to children': other_parties[0].was_ordered_to_pay_health_insurance_to_children_yes
     datatype: yesno
 ---
+id: "is the judgment order still active"
 question: |
   Is the judgment/order still active?
 subquestion: |
@@ -346,6 +361,7 @@ fields:
   - 'Contempt from order yes  2': contempt_from_order_yes
     datatype: yesno
 ---
+id: "judgment or order of the court"
 question: |
   Judgment or Order of the Court
 subquestion: |
@@ -356,6 +372,7 @@ fields:
   - 'Contempt from order': contempt_from_order_yes
     datatype: yesno
 ---
+id: "medical and dental expenses"
 question: |
   Medical and Dental Expenses
 subquestion: |
@@ -368,6 +385,7 @@ fields:
   - 'Defendant was ordered to pay medical expenses to children': other_parties[0].was_ordered_to_pay_medical_expenses_to_children_yes
     datatype: yesno
 ---
+id: "order judgment violated"
 question: |
   Order/Judgment Violated?
 subquestion: |
@@ -378,6 +396,7 @@ fields:
   - 'Contempt from order yes  3': contempt_from_order_yes
     datatype: yesno
 ---
+id: "other order"
 question: |
   Other Order
 subquestion: |
@@ -389,12 +408,16 @@ fields:
     datatype: date
   - 'Defendant has violated order description': other_parties[0].has_violated_order_description
 ---
+id: "other order judgment"
 question: |
   Other Order/Judgment
 subquestion: |
   Was there another order in place that the defendant violated? (No need to specify).
-yesno: other_parties[0].was_ordered_other_yes
+fields:
+  - no label: "other_parties[0].was_ordered_other_yes"
+    datatype: yesnoradio
 ---
+id: "payment frequency"
 question: |
   Payment Frequency
 subquestion: |
@@ -427,12 +450,16 @@ code: |
 code: |
   other_parties[0].name_middle_initial = other_parties[0].name.middle[:1]
 ---
+id: "restraint on personal liberty"
 question: |
   Restraint on Personal Liberty
 subquestion: |
   Did the court order the defendant not to impose any restraint on the personal liberty of the plaintiff?
-yesno: other_parties[0].was_ordered_to_not_impose_restraint_yes
+fields:
+  - no label: "other_parties[0].was_ordered_to_not_impose_restraint_yes"
+    datatype: yesnoradio
 ---
+id: "was defendant ordered to pay alimony and or support for minor or dependent child ren"
 question: |
   Was defendant ordered to pay alimony and/or support for minor or dependent child(ren)?
 subquestion: |
@@ -447,6 +474,7 @@ fields:
 ---
 progress: 100
 mandatory: True
+id: "placeholder download screen"
 question: |
   Placeholder download screen
 subquestion: |
@@ -538,6 +566,7 @@ include:
 comment: |
   This question is used to introduce your interview. Please customize
 continue button field: cjd103_print_to_Adobe_PDF_labels_added0013_intro
+id: "complaint for contempt"
 question: |
   Complaint for Contempt
 subquestion: |
@@ -603,6 +632,7 @@ code: |
   cjd103_print_to_Adobe_PDF_labels_added0013 = True
 ---
 continue button field: cjd103_print_to_Adobe_PDF_labels_added0013_preview_question
+id: "placeholder preview screen"
 question: |
   Placeholder preview screen
 subquestion: |

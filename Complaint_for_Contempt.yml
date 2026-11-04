@@ -256,6 +256,7 @@ code: |
 #   users = plaintiffs
 #   other_parties = defendants
 ---
+id: "amount of payment"
 question: |
   Amount of Payment
 subquestion: |
@@ -266,12 +267,16 @@ fields:
     min: 0
     required: true
 ---
+id: "arrears of court ordered support payments"
 question: |
   Arrears of Court-Ordered Support Payments
 subquestion: |
   Is the defendant behind on court-ordered support payments?
-yesno: arrears_in_support_payments_yes
+fields:
+  - no label: arrears_in_support_payments_yes
+    datatype: yesnoradio
 ---
+id: "do you have an attorney"
 question: |
   Do you have an attorney?
 subquestion: | 
@@ -280,6 +285,7 @@ fields:
   - 'Do you have an attorney?': user_has_attorney_yes
     datatype: yesnoradio
 ---
+id: "attorney pro se representing yourself information"
 question: |
   Attorney/Pro Se (Representing Yourself) Information
 subquestion: |
@@ -291,6 +297,7 @@ fields:
     datatype: text
     required: false
 ---
+id: "is this complaint regarding a civil or criminal matter"
 question: |
   Is this complaint regarding a civil or criminal matter?
 subquestion: |
@@ -306,12 +313,16 @@ code: |
   complaint_for_contempt_civil_yes = civil_or_criminal_complaint == "civil"
   complaint_for_contempt_criminal_yes = civil_or_criminal_complaint == "criminal"
 ---
+id: "court ordered parenting time"
 question: |
   Court Ordered Parenting Time
 subquestion: |
   Is this contempt about defendant's failure to comply with court ordered parenting time?
-yesno: other_parties[0].was_ordered_to_comply_with_parenting_time_yes
+fields:
+  - no label: "other_parties[0].was_ordered_to_comply_with_parenting_time_yes"
+    datatype: yesnoradio
 ---
+id: "date of judgment or order"
 question: |
   Date of ${judgment_or_order}
 subquestion: |
@@ -320,6 +331,7 @@ fields:
   - 'Date of ${judgment_or_order}': order_or_judgment_date
     datatype: date
 ---
+id: "defendants middle initial"
 question: |
   Defendant's Middle Initial
 subquestion: |
@@ -327,6 +339,7 @@ subquestion: |
 fields:
   - 'Defendant name middle initial': other_parties[0].name_middle_initial
 ---
+id: "denial of parenting time"
 question: |
   Denial of Parenting Time
 subquestion: |
@@ -339,6 +352,7 @@ fields:
     maxlength: 40 
     show if: users[0].has_denied_parenting_time_yes
 ---
+id: "due and unpaid payments"
 question: |
   Due and Unpaid Payments
 subquestion: |
@@ -351,6 +365,7 @@ fields:
     min: 0 
     show if: there_is_now_due_and_unpaid_sum_to_plaintiff_yes
 ---
+id: "health insurance premiums"
 question: |
   Health Insurance Premiums
 subquestion: |
@@ -365,6 +380,7 @@ fields:
     datatype: yesnoradio
     show if: other_parties[0].was_ordered_to_pay_health_insurance_yes
 ---
+id: "is the judgment order still active"
 question: |
   Is the judgment/order still active?
 subquestion: |
@@ -375,6 +391,7 @@ fields:
   - 'Contempt from order yes  2': contempt_from_order_yes
     datatype: yesno
 ---
+id: "judgment or order of the court"
 question: |
   Judgment or Order of the Court
 subquestion: |
@@ -385,6 +402,7 @@ fields:
   - 'Contempt from order': contempt_from_order_yes
     datatype: yesno
 ---
+id: "medical and dental expenses"
 question: |
   Medical and Dental Expenses
 subquestion: |
@@ -399,6 +417,7 @@ fields:
     datatype: yesnoradio
     show if: other_parties[0].was_ordered_to_pay_medical_expenses_yes
 ---
+id: "did the defendant violate a judgment or order of the court"
 question: |
   Did the defendant violate a judgment or order of the Court?
 subquestion: |
@@ -415,6 +434,7 @@ code: |
   contempt_from_judgment_yes = judgment_or_order == "judgment"
   contempt_from_order_yes = judgment_or_order == "order of the court"
 ---
+id: "other order"
 question: |
   Other Order
 subquestion: |
@@ -428,6 +448,7 @@ fields:
   - 'How has defendant violated the order?': other_parties[0].has_violated_order_description
     show if: other_parties[0].has_violated_order_yes 
 ---
+id: "other order violated"
 question: |
   Other Order Violated
 subquestion: |
@@ -444,6 +465,7 @@ code: |
   if other_parties[0].was_ordered_other_yes is False: 
     other_order_description = ''
 ---
+id: "payment frequency"
 question: |
     Payment Frequency
 subquestion: |
@@ -493,12 +515,16 @@ code: |
 code: |
   other_parties[0].name_middle_initial = other_parties[0].name.middle[:1]
 ---
+id: "restraint on personal liberty"
 question: |
   Restraint on Personal Liberty
 subquestion: |
   Is this contempt about the defendant imposing restraint on your personal liberty?
-yesno: other_parties[0].was_ordered_to_not_impose_restraint_yes
+fields:
+  - no label: "other_parties[0].was_ordered_to_not_impose_restraint_yes"
+    datatype: yesnoradio
 ---
+id: "is this contempt about the defendant being ordered to pay alimony and or support for minor or dependent child ren if so please specify"
 question: |
   Is this contempt about the defendant being ordered to pay alimony and/or support for minor or dependent child(ren)? If so, please specify. 
 subquestion: |
@@ -515,25 +541,36 @@ fields:
     required: true
     show if: other_parties[0].was_ordered_to_pay_yes
 ---
+id: "have you ever had a case against the defendant in probate and family court"
 question: |
   Have you ever had a case against the defendant in Probate and Family Court?
-noyes: previous_case_no
+fields:
+  - no label: previous_case_no
+    datatype: yesnoradio
 ---
+id: "has the court issued any written decisions orders or judgments in that case"
 question: |
   Has the Court issued any written decisions, orders, or judgments in that case?
-noyes: court_has_issued_no
+fields:
+  - no label: court_has_issued_no
+    datatype: yesnoradio
 ---
+id: "has the other side disobeyed that written decision"
 question: |
   Has the other side disobeyed that written decision?
-noyes: other_party_disobeyed_no
+fields:
+  - no label: other_party_disobeyed_no
+    datatype: yesnoradio
 ---
 event: end_interview
+id: "based on your answer to the previous question this interview isnt for you"
 question: |
   Based on your answer to the previous question, this interview isn't for you.
 buttons:
   - Exit: exit
   - Restart: restart
 ---
+id: "keeping your information safe"
 question: | #impoundment
   Keeping Your Information Safe
 subquestion: 
@@ -549,6 +586,7 @@ fields: # fix this in the Docx
       val("address_is_impounded") == true || val("domestic_violence_shelter") == true
 ---
 continue button field: cjd103_print_to_Adobe_PDF_labels_added0013_preview_question
+id: "placeholder preview screen"
 question: |
   Placeholder preview screen
 subquestion: |
@@ -602,6 +640,7 @@ section: download
 need: cjd103_print_to_Adobe_PDF_labels_added0013
 progress: 100
 mandatory: True
+id: "placeholder download screen"
 question: |
   Placeholder download screen
 subquestion: |
@@ -703,6 +742,7 @@ code: |
 comment: |
   This question is used to introduce your interview. Please customize
 continue button field: cjd103_print_to_Adobe_PDF_labels_added0013_intro
+id: "complaint for contempt"
 question: |
   Complaint for Contempt
 subquestion: |
@@ -821,6 +861,7 @@ fields:
       name_suffix() 
 ---
 continue button field: cjd103_print_to_Adobe_PDF_labels_added0013_preview_question
+id: "placeholder preview screen 2"
 question: |
   Placeholder preview screen
 subquestion: |
