@@ -546,21 +546,21 @@ question: |
   Have you ever had a case against the defendant in Probate and Family Court?
 fields:
   - no label: previous_case_no
-    datatype: yesnoradio
+    datatype: noyesradio
 ---
 id: "has the court issued any written decisions orders or judgments in that case"
 question: |
   Has the Court issued any written decisions, orders, or judgments in that case?
 fields:
   - no label: court_has_issued_no
-    datatype: yesnoradio
+    datatype: noyesradio
 ---
 id: "has the other side disobeyed that written decision"
 question: |
   Has the other side disobeyed that written decision?
 fields:
   - no label: other_party_disobeyed_no
-    datatype: yesnoradio
+    datatype: noyesradio
 ---
 event: end_interview
 id: "based on your answer to the previous question this interview isnt for you"
